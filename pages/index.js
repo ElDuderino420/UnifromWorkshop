@@ -4,6 +4,9 @@ import { CanvasClient, CANVAS_DRAFT_STATE, CANVAS_PUBLISHED_STATE } from "@unifo
 import { Composition, Slot } from "@uniformdev/canvas-react";
 import resolveRenderer from "../lib/resolveRenderer";
 
+import { useLivePreviewNextStaticProps } from "../hooks/useLivePreviewNextStaticProps";
+import getConfig from "next/config";
+
 export async function getStaticProps({ preview }) {
   const client = new CanvasClient({
     apiKey: process.env.UNIFORM_API_KEY,
@@ -20,7 +23,16 @@ export async function getStaticProps({ preview }) {
   };
 }
 
+const { publicRuntimeConfig } = getConfig();
+const { uniform } = publicRuntimeConfig;
+
 export default function Home({ composition }) {
+
+  useLivePreviewNextStaticProps({
+    compositionId: composition?._id,
+    projectId: uniform.projectId,
+  });
+
   return (
     <Composition data={composition} resolveRenderer={resolveRenderer}>
       <div className={styles.container}>
