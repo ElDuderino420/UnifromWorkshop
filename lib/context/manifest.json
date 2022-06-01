@@ -1,0 +1,29 @@
+{
+  "project": {
+    "pz": {
+      "sig": {
+        "qstringenablement": {
+          "str": 20,
+          "cap": 100,
+          "dur": "p",
+          "crit": {
+            "op": "&",
+            "type": "G",
+            "clauses": [
+              {
+                "type": "QS",
+                "match": {
+                  "cs": false,
+                  "op": "=",
+                  "rhs": "enablement"
+                },
+                "queryName": "utm_campaign"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "test": {}
+  }
+}
